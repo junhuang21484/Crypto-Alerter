@@ -1,0 +1,28 @@
+{
+    "tasks": [
+        {
+            "token": "DMqv9nGbEVAkQoz13ncKh5XJrFg2BQ5YTwd1XrGEKkaz",
+            "chain": "solana",
+            "alert_when": [
+                {
+                    "type": "above",
+                    "price": "0.00015"
+                }
+            ]
+        },
+        {
+            "token": "drakduQWnTS89CdTUdgHmZzEkN6reBLYqrk8rzVhU53",
+            "chain": "solana",
+            "alert_when": [
+                {
+                    "type": "above",
+                    "price": 6.5e-06
+                },
+                {
+                    "type": "below",
+                    "price": 6e-06
+                }
+            ]
+        }
+    ]
+}
