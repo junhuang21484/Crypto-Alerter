@@ -3,7 +3,7 @@
     "api_key": ""
   },
   "price_monitor": {
-    "check_interval": 10,
+    "check_interval": 2,
     "alert_interval": 60
   },
   "alert": {

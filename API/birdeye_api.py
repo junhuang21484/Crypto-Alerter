@@ -1,4 +1,6 @@
 import requests
+import threading
+import time
 
 
 class BirdEyeApi:
@@ -28,8 +30,10 @@ class BirdEyeApi:
         }
 
         response = requests.get(url, headers=headers).json()
-        if response['success']:
+        if response['success'] and response['data']:
             return response['data']['value']
+        elif not response['success']:
+            print(response)
 
         return -1
 
@@ -49,19 +53,10 @@ class BirdEyeApi:
     def check_chain_supported(self, chain: str) -> bool:
         return chain in self.supported_chain
 
-    def check_token_exist(self, chain: str, token_addy: str) -> bool:
-        url = self.base_url + f"/public/exists_token?address={token_addy}"
-
-        headers = {
-            "x-chain": chain,
-            "X-API-KEY": self.api_key
-        }
-
-        response = requests.get(url, headers=headers).json()
-        if response['success']:
-            return response['data']['exists']
-
-        return False
-
-
-
+    def loop_until_found(self, chain: str, token: str, check_interval: int, found_event: threading.Event):
+        while not found_event.is_set():
+            d = self.get_crypto_price(chain, token)
+            if d:
+                found_event.set()
+            else:
+                time.sleep(check_interval)

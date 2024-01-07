@@ -2,8 +2,8 @@ from API.birdeye_api import BirdEyeApi
 
 
 class Util:
-    def __init__(self):
-        self.birdeye_api = BirdEyeApi("ee766d1fb16f4d3cb46e12a18fb15803")
+    def __init__(self, birdeye_api: BirdEyeApi):
+        self.birdeye_api = birdeye_api
         self.chain_address_dict = {
             "solana": "So11111111111111111111111111111111111111111"
         }
